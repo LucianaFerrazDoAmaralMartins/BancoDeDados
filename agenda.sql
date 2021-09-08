@@ -38,13 +38,9 @@ alter table contatos add column fone2 varchar (15) after fone;
 
 -- ALTERAÇÕES comando uasado para modificar o tipo de dado 
 alter table contatos modify column fone2 varchar(15) not null after fone;
+
 -- validações do campo(tornar obrigatório)
 alter table contatos modify email varchar(100) unique;
-
--- A linha abaixo modifica o tipo de dado de um campo
--- decimal(10,2) 10 digitos com 2 casas decimais
--- aceita número inteiros e não inteiros
-alter table carrinho modify valor decimal(10,2) not null;
 
 -- Comando usado para descrever a tabela IMPORTANTÍSSIMO
 describe contatos;  
@@ -125,7 +121,6 @@ values ('Indiana Jones','99999-6789','indianajones@email.com');
 insert into contatos (nome,fone,email)
 values ('Lara Croft','99999-7890','laracroft@email.com');
 
-
 /* CRUD READ (Select)*/
 -- é uma espécie de relatório
 -- selecionar todos os registros da tabela
@@ -145,3 +140,19 @@ select nome,fone from contatos order by nome asc;
 
 -- filtrar nomes que começam com a letra B
 select * from contatos where nome like 'B%';
+
+/* CRUD UPDATE (update)*/
+-- alterando um dado específico do registro da tabela (usar sempre o id "SEGURANÇA") 
+-- exemplo modificar um número de telefone pelo ID 
+update contatos  set fone='91234-8090' where id=4;
+select * from contatos; 
+
+-- exemplo inserir um email para um ID 
+update contatos set email='bia@email.com' where id=2;
+
+-- alterando todos os dados do registro (menos o ID (identificador único) 
+update contatos set nome='Elvis Aaaron Presley',fone='99999-1111',email='elvispresley@email.com' where id=5; 
+
+/* CRUD DELETE (delete)*/
+-- excluindo um registro da tabela (usar sempre o id "SEGURANÇA")
+delete from contatos where id=4;
